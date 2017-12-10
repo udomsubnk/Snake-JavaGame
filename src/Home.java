@@ -1,26 +1,12 @@
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
 import javax.swing.*;
-import java.awt.*;
-import javax.swing.border.TitledBorder;
-
-public class Home extends JFrame implements ActionListener {
+public class Home extends JPanel {
+	static JLabel start,exit;
 	public Home(){
-	
-	}
-	protected void paintComponent(Graphics f){
-		super.paintComponents(f);
-	}
-	
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
+		setLayout(null);
+		start = new JLabel();
+		start.setText("Start");
+		start.setLocation(0,0);
+		start.setSize(263,66);
+		add(start);
 	}
 }
-
-
-
-	
-
