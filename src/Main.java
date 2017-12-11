@@ -2,7 +2,7 @@ import java.awt.event.*;
 import javax.swing.*;
 public class main extends JFrame implements MouseListener{
 	static Home ohome=  new Home();
-	static play oplay= new play();
+	static play oplay;
 	static howto ohowto=new howto();
     main(){
     	addKeyListener(new TAdapter());
@@ -35,8 +35,10 @@ public class main extends JFrame implements MouseListener{
         }
     	if(e.getSource() == ohowto.BT2) {
     		this.remove(ohowto);
+    		oplay= new play();
     		this.add(oplay);
     		windows();
+    		validate();
         }
     	repaint();
     }

@@ -18,6 +18,8 @@ public class play extends JPanel implements ActionListener{
    private int apple_y;
    private int water_x;
    private int water_y;
+   private int kob_x;
+   private int kob_y;
    static boolean leftDirection = false; 
    static boolean rightDirection = true;
    static boolean upDirection = false;
@@ -28,6 +30,7 @@ public class play extends JPanel implements ActionListener{
    private Image apple;
    private Image head;
    private Image water;
+   private Image kob;
    private Image p4;
    private Image p6;
    private int count=0;
@@ -41,13 +44,16 @@ public class play extends JPanel implements ActionListener{
        initGame();
    }
    private void problem(){
-	   if(count<7){
+	   if(count<3){
 		   n4=10;
 		   n6=5;
-	   }else if(count < 15){
+		   
+	   }else if(count<6){
 		   n4 = 15;
 		   n6=10;
+		  this.setBackground(Color.red);
 	   }else {
+		   
 		   n4=20;
 		   n6=15;
 	   }
@@ -72,6 +78,8 @@ public class play extends JPanel implements ActionListener{
        apple = iia.getImage();
        ImageIcon iiw = new ImageIcon("water.png");
        water = iiw.getImage();
+       ImageIcon iik = new ImageIcon("kob.png");
+       kob = iik.getImage();
        ImageIcon iih = new ImageIcon("snake.h.png");
        head = iih.getImage();
        ImageIcon iip4 = new ImageIcon("D4.jpg");
@@ -91,6 +99,9 @@ public class play extends JPanel implements ActionListener{
        locateWater();
        timer = new Timer(Delay,this);
        timer.start();
+       locateKob();
+       timer = new Timer(Delay,this);
+       timer.start();
    }
    @Override
    public void paintComponent(Graphics g) {
@@ -100,13 +111,15 @@ public class play extends JPanel implements ActionListener{
    private void doDrawing(Graphics g) {   //ÇÒ´µÑÇ§Ù   áÍ»à»ÔÅ
        if (inGame) { 
            g.drawImage(apple, apple_x, apple_y, this); 
-           g.drawImage(water, water_x, water_y, this); 
+           g.drawImage(water, water_x, water_y, this);
+           g.drawImage(kob, kob_x, kob_y, this);
            for (int z = 0; z < dots; z++) { 
                if (z == 0) {
                    g.drawImage(head, x[z], y[z], this); 
                } else {
                    g.drawImage(ball, x[z], y[z], this); 
                }
+             
            }
            for(int i=0;i<n4;i++){
 			   g.drawImage(p4, p4_x[i], p4_y[i], this);
@@ -120,12 +133,13 @@ public class play extends JPanel implements ActionListener{
        }
    }
    private void gameOver(Graphics g) {       
-       String msg = "Game Over";
+       String msg = "Game Over!";
        String msg2 = "Your score is";
-       String score= Integer.toString(count*10);
+       String score= Integer.toString(count);
        
        Font small = new Font("Helvetica", Font.BOLD, 60);
        FontMetrics metr = getFontMetrics(small);
+       this.setBackground(Color.black);
        g.setColor(Color.white);
        g.setFont(small);
        g.drawString(msg, (B_WIDTH - metr.stringWidth(msg)) / 2, B_HEIGHT / 2);
@@ -143,18 +157,29 @@ public class play extends JPanel implements ActionListener{
    private void check() { 
        if ((x[0] == apple_x) && (y[0] == apple_y)) { //àªç¤ËÑÇ§Ù 
            dots++;
-           count++;
+           count+=10;
            if(count==8||count==16)
-               problem();
+           problem();
            locateApple();
        }
        else if ((x[0] == water_x) && (y[0] == water_y)) { //àªç¤ËÑÇ§Ù 
            dots++;
-           count++;
+           count+=5;
            if(count==8||count==16)
-               problem();
-           		locateWater();
+            problem();
+           	locateWater();
        }
+       else if ((x[0] == kob_x) && (y[0] == kob_y)) { //àªç¤ËÑÇ§Ù 
+           dots++;
+           count+=25;
+           if(count==8||count==16)
+            problem();
+           	locateKob();
+       }
+       if(count>=5){
+    	   this.setBackground(Color.white);
+       }
+      
        for(int k=0;k<n4;k++){
     	   if ((x[0] == p4_x[k]) && (y[0] == p4_y[k]))  
     		   inGame = false;
@@ -171,7 +196,7 @@ public class play extends JPanel implements ActionListener{
            y[z] = y[(z - 1)];
        }
        if (leftDirection) {
-           x[0] -= DOT_SIZE; 
+           x[0] -= DOT_SIZE/2; 
        }
        if (rightDirection) {
            x[0] += DOT_SIZE;
@@ -216,6 +241,12 @@ public class play extends JPanel implements ActionListener{
        water_x = ((r * DOT_SIZE));
        r = (int) (Math.random() * 50);
        water_y = ((r * DOT_SIZE));
+   }
+   private void locateKob(){
+	   int r = (int) (Math.random() * 58); 
+       kob_x = ((r * DOT_SIZE));
+       r = (int) (Math.random() * 50);
+       kob_y = ((r * DOT_SIZE));
    }
    @Override
    public void actionPerformed(ActionEvent e) {
