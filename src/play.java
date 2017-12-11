@@ -89,10 +89,9 @@ public class play extends JPanel implements ActionListener{
 		   }
 
 	   }
-	   
    }
    
-    private void loadImages() {//ãÊèÃÙ» ËÑÇ µÑÇ áÍ»à»ÔÅ
+    private void loadImages() {
        ImageIcon iib = new ImageIcon("snake.png");
        ball = iib.getImage();
        ImageIcon iia = new ImageIcon("apple.png");
