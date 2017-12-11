@@ -12,7 +12,7 @@ public class play extends JPanel implements ActionListener{
    private final int p4_y[] = new int[20];
    private final int p6_x[] = new int[15];
    private final int p6_y[] = new int[15];
-   private int Delay = 200;
+   private int Delay = 330;
    private int dots;
    private int apple_x;	
    private int apple_y;
@@ -36,7 +36,6 @@ public class play extends JPanel implements ActionListener{
    private int count=0;
    private int n4,n6,xx,yy;
    play(){
-       setBackground(Color.black);
        setFocusable(true);
        setPreferredSize(new Dimension(B_WIDTH, B_HEIGHT));
        problem();
@@ -109,6 +108,8 @@ public class play extends JPanel implements ActionListener{
        doDrawing(g);
    }   
    private void doDrawing(Graphics g) {   //ÇÒ´µÑÇ§Ù   áÍ»à»ÔÅ
+	   Image grass2 = new ImageIcon("grass2.jpeg").getImage();
+	   g.drawImage(grass2, 0, 0, getWidth(), getHeight() , null);
        if (inGame) { 
            g.drawImage(apple, apple_x, apple_y, this); 
            g.drawImage(water, water_x, water_y, this);
@@ -178,6 +179,9 @@ public class play extends JPanel implements ActionListener{
        }
        if(count>=5){
     	   this.setBackground(Color.white);
+       }
+       if(count>=10){
+    	   this.setBackground(Color.pink);
        }
       
        for(int k=0;k<n4;k++){
