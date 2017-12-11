@@ -16,6 +16,8 @@ public class play extends JPanel implements ActionListener{
    private int dots;
    private int apple_x;	
    private int apple_y;
+   private int water_x;
+   private int water_y;
    static boolean leftDirection = false; 
    static boolean rightDirection = true;
    static boolean upDirection = false;
@@ -25,6 +27,7 @@ public class play extends JPanel implements ActionListener{
    private Image ball;
    private Image apple;
    private Image head;
+   private Image water;
    private Image p4;
    private Image p6;
    private int count=0;
@@ -41,54 +44,25 @@ public class play extends JPanel implements ActionListener{
 	   if(count<7){
 		   n4=10;
 		   n6=5;
-		   for(int i=0;i<n4;i++){
-			   xx= (int)(Math.random()*58);
-			   yy= (int)(Math.random()*50);
-			   p4_x[i] = (int)(xx*DOT_SIZE);
-			   p4_y[i] = (int)(yy*DOT_SIZE);
-		   }
-		   for(int i=0;i<n6;i++){
-			   xx= (int)(Math.random()*58);
-			   yy= (int)(Math.random()*50);
-			   p6_x[i] = (int)(xx*DOT_SIZE);
-			   p6_y[i] = (int)(yy*DOT_SIZE);
-		   }
-	   }
-	   else if(count<15){
-		   n4=15;
+	   }else if(count < 15){
+		   n4 = 15;
 		   n6=10;
-		   Delay-=70;
-		   for(int i=0;i<n4;i++){
-			   xx= (int)(Math.random()*58);
-			   yy= (int)(Math.random()*50);
-			   p4_x[i] = (int)(xx*DOT_SIZE);
-			   p4_y[i] = (int)(yy*DOT_SIZE);
-		   }
-		   for(int i=0;i<n6;i++){
-			   xx= (int)(Math.random()*58);
-			   yy= (int)(Math.random()*50);
-			   p6_x[i] = (int)(xx*DOT_SIZE);
-			   p6_y[i] = (int)(yy*DOT_SIZE);
-		   }
-	   }
-	   else{
+	   }else {
 		   n4=20;
 		   n6=15;
-		   Delay-=70;
-		   for(int i=0;i<n4;i++){
-			   xx= (int)(Math.random()*58);
-			   yy= (int)(Math.random()*50);
-			   p4_x[i] = (int)(xx*DOT_SIZE);
-			   p4_y[i] = (int)(yy*DOT_SIZE);
-		   }
-		   for(int i=0;i<n6;i++){
-			   xx= (int)(Math.random()*58);
-			   yy= (int)(Math.random()*50);
-			   p6_x[i] = (int)(xx*DOT_SIZE);
-			   p6_y[i] = (int)(yy*DOT_SIZE);
-		   }
-
 	   }
+	   for(int i=0;i<n4;i++){
+		   xx= (int)(Math.random()*58);
+		   yy= (int)(Math.random()*50);
+		   p4_x[i] = (int)(xx*DOT_SIZE);
+		   p4_y[i] = (int)(yy*DOT_SIZE);
+		}
+		for(int i=0;i<n6;i++){
+			xx= (int)(Math.random()*58);
+			yy= (int)(Math.random()*50);
+			p6_x[i] = (int)(xx*DOT_SIZE);
+			p6_y[i] = (int)(yy*DOT_SIZE);
+		}
    }
    
     private void loadImages() {
@@ -96,6 +70,8 @@ public class play extends JPanel implements ActionListener{
        ball = iib.getImage();
        ImageIcon iia = new ImageIcon("apple.png");
        apple = iia.getImage();
+       ImageIcon iiw = new ImageIcon("water.png");
+       water = iiw.getImage();
        ImageIcon iih = new ImageIcon("snake.h.png");
        head = iih.getImage();
        ImageIcon iip4 = new ImageIcon("D4.jpg");
