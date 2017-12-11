@@ -81,12 +81,15 @@ public class play extends JPanel implements ActionListener{
    }
    private void initGame() {
        dots = 3;
-       for (int z = 0; z < dots; z++) { //¨Ø´àÃÔèÁµé¹
+       for (int z = 0; z < dots; z++) {
            x[z] = 50 - z * 10;
            y[z] = 50;
        }
-       locateApple(); //ÊÃéÒ§µÓáË¹è§
+       locateApple();
        timer = new Timer(Delay, this);
+       timer.start();
+       locateWater();
+       timer = new Timer(Delay,this);
        timer.start();
    }
    @Override
@@ -97,6 +100,7 @@ public class play extends JPanel implements ActionListener{
    private void doDrawing(Graphics g) {   //ÇÒ´µÑÇ§Ù   áÍ»à»ÔÅ
        if (inGame) { 
            g.drawImage(apple, apple_x, apple_y, this); 
+           g.drawImage(water, water_x, water_y, this); 
            for (int z = 0; z < dots; z++) { 
                if (z == 0) {
                    g.drawImage(head, x[z], y[z], this); 
@@ -143,6 +147,13 @@ public class play extends JPanel implements ActionListener{
            if(count==8||count==16)
                problem();
            locateApple();
+       }
+       else if ((x[0] == water_x) && (y[0] == water_y)) { //àªç¤ËÑÇ§Ù 
+           dots++;
+           count++;
+           if(count==8||count==16)
+               problem();
+           		locateWater();
        }
        for(int k=0;k<n4;k++){
     	   if ((x[0] == p4_x[k]) && (y[0] == p4_y[k]))  
@@ -199,6 +210,12 @@ public class play extends JPanel implements ActionListener{
        apple_x = ((r * DOT_SIZE));
        r = (int) (Math.random() * 50);
        apple_y = ((r * DOT_SIZE));
+   }
+   private void locateWater(){
+	   int r = (int) (Math.random() * 58); 
+       water_x = ((r * DOT_SIZE));
+       r = (int) (Math.random() * 50);
+       water_y = ((r * DOT_SIZE));
    }
    @Override
    public void actionPerformed(ActionEvent e) {
