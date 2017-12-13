@@ -81,13 +81,13 @@ public class play extends JPanel implements ActionListener{
        kob = iik.getImage();
        ImageIcon iih = new ImageIcon("snake.h.png");
        head = iih.getImage();
-       ImageIcon iip4 = new ImageIcon("D4.jpg");
+       ImageIcon iip4 = new ImageIcon("D4.png");
        p4 = iip4.getImage();
        ImageIcon iip6 = new ImageIcon("D6.jpg");
        p6 = iip6.getImage();
    }
    private void initGame() {
-       dots = 3;
+       dots = 10;
        for (int z = 0; z < dots; z++) {
            x[z] = 50 - z * 10;
            y[z] = 50;
@@ -108,12 +108,27 @@ public class play extends JPanel implements ActionListener{
        doDrawing(g);
    }   
    private void doDrawing(Graphics g) {   //ÇÒ´µÑÇ§Ù   áÍ»à»ÔÅ
-	   Image grass2 = new ImageIcon("grass2.jpeg").getImage();
+	   Image grass2 = new ImageIcon("BGPLAY1.png").getImage();
 	   g.drawImage(grass2, 0, 0, getWidth(), getHeight() , null);
+	   if(count>=5)
+	   {
+		   Image grass3 = new ImageIcon("BGPLAY2.png").getImage();
+		   g.drawImage(grass3, 0, 0, getWidth(), getHeight() , null);
+	   }
+	   if(count>=10)
+	   {
+		   Image grass4 = new ImageIcon("BGPLAY3.png").getImage();
+		   g.drawImage(grass4, 0, 0, getWidth(), getHeight() , null);
+	   }
+	   
        if (inGame) { 
            g.drawImage(apple, apple_x, apple_y, this); 
            g.drawImage(water, water_x, water_y, this);
            g.drawImage(kob, kob_x, kob_y, this);
+           g.setFont(new Font("Leopold",Font.PLAIN,15));
+           g.setColor(Color.red);
+           g.drawString("SCORE:"+" "+count, 500, 50);
+           
            for (int z = 0; z < dots; z++) { 
                if (z == 0) {
                    g.drawImage(head, x[z], y[z], this); 
@@ -140,18 +155,18 @@ public class play extends JPanel implements ActionListener{
        
        Font small = new Font("Helvetica", Font.BOLD, 60);
        FontMetrics metr = getFontMetrics(small);
-       this.setBackground(Color.black);
-       g.setColor(Color.white);
+       this.setBackground(Color.white);
+       g.setColor(Color.black);
        g.setFont(small);
        g.drawString(msg, (B_WIDTH - metr.stringWidth(msg)) / 2, B_HEIGHT / 2);
        Font small2 = new Font("Helvetica", Font.BOLD, 30);
        FontMetrics metr2 = getFontMetrics(small2);
-       g.setColor(Color.white);
+       g.setColor(Color.orange);
        g.setFont(small2);
        g.drawString(msg2, (B_WIDTH - metr.stringWidth(msg2)) / 2+60, B_HEIGHT / 2+50);
        Font small3 = new Font("Helvetica", Font.BOLD, 30);
        FontMetrics metr3 = getFontMetrics(small3);
-       g.setColor(Color.white);
+       g.setColor(Color.black);
        g.setFont(small3);
        g.drawString(score, (B_WIDTH - metr.stringWidth(score)) / 2+110, B_HEIGHT / 2+50);
    }
@@ -177,12 +192,15 @@ public class play extends JPanel implements ActionListener{
             problem();
            	locateKob();
        }
-       if(count>=5){
-    	   this.setBackground(Color.white);
-       }
-       if(count>=10){
-    	   this.setBackground(Color.pink);
-       }
+//       if(count>=5){
+//    	   this.setBackground(Color.white);
+//       }
+//       if(count>=10){
+//    	   this.setBackground(Color.pink);
+//    	   
+//    	   
+//
+//       }
       
        for(int k=0;k<n4;k++){
     	   if ((x[0] == p4_x[k]) && (y[0] == p4_y[k]))  

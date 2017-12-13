@@ -12,7 +12,7 @@ public class main extends JFrame implements MouseListener{
     }
 	public static void main(String[] args) {
 		main frame = new main();
-        frame.setTitle("FRUIT SNAKE");
+        frame.setTitle("SMOOTH SNAKE");
         frame.setSize(620,540);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

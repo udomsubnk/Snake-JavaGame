@@ -1,7 +1,7 @@
 import java.awt.*;
 import javax.swing.*;
 public class howto extends JPanel {
-	JLabel BG2 = new JLabel(new ImageIcon("BG2.jpg"));
+	JLabel BG2 = new JLabel(new ImageIcon("BG2.png"));
 	JLabel BT2 = new JLabel(new ImageIcon("BT2.png"));
 	howto(){
 		setBackground(Color.black);
